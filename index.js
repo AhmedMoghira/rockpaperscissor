@@ -47,12 +47,14 @@ function playGame(userChoice) {
   }
   if (userScore === 5) {
     resultDisplay.textContent = "YOU WIN THE ROUND";
-    running = false;
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000); // Delay in milliseconds
   }
   if (computerScore === 5) {
     resultDisplay.textContent = "YOU LOSE THE ROUND";
-    running = false;
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
   }
 }
-
-//if score == 5 -> you win
