@@ -6,7 +6,7 @@ let resultDisplay = document.getElementById("resultDisplay");
 let computerChoiceDisplay = document.querySelector(".computerChoice");
 const userScoreDisplay = document.getElementById("userScore");
 const computerScoreDisplay = document.getElementById("computerScore");
-let running = true;
+
 
 function playGame(userChoice) {
   let computerChoice = choices[Math.floor(Math.random() * 3)];
