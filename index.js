@@ -2,59 +2,57 @@
 let userScore = 0;
 let computerScore = 0;
 let choices = ["rock", "paper", "scissor"];
+let resultDisplay = document.getElementById("resultDisplay");
+let computerChoiceDisplay = document.querySelector(".computerChoice");
+const userScoreDisplay = document.getElementById("userScore");
+const computerScoreDisplay = document.getElementById("computerScore");
+let running = true;
 
+function playGame(userChoice) {
+  let computerChoice = choices[Math.floor(Math.random() * 3)];
+  let result = "";
+  computerChoiceDisplay.textContent = computerChoice;
 
-function playGame() {
-  function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
-
-    return choices[choice];
-  }
-
-  // function getUserChoice() {
-  //   return prompt("choose 'r' 'p' 's'");
-  // }
-  function userChioce() {
-    
-  }
-
-  function playRound(userChoice, computerChoice) {
-    userChoice = userChoice.toLowerCase();
-    console.log(userChoice, computerChoice);
-    if (userChoice == "r") {
-      if (computerChoice == "rock") console.log("Tie");
-      else if (computerChoice == "paper") {
-        console.log("You lose");
-        computerScore++;
-      } else if (computerChoice == "scissor") {
-        console.log("You win!");
-        userScore++;
-      }
+  if (userChoice === computerChoice) {
+    result = "TIE!";
+  } else {
+    switch (userChoice) {
+      case "rock":
+        result = computerChoice === "scissor" ? "YOU WIN!" : "YOU LOSE!";
+        break;
+      case "paper":
+        result = computerChoice === "rock" ? "YOU WIN!" : "YOU LOSE!";
+        break;
+      case "scissor":
+        result = computerChoice === "paper" ? "YOU WIN!" : "YOU LOSE!";
+        break;
     }
-    if (userChoice == "p") {
-      if (computerChoice == "paper") console.log("Tie");
-      else if (computerChoice == "scissor") {
-        console.log("You lose");
-        computerScore++;
-      } else if (computerChoice == "rock") {
-        console.log("You win!");
-        userScore++;
-      }
-    }
-    if (userChoice == "s") {
-      if (computerChoice == "scissor") console.log("Tie");
-      else if (computerChoice == "rock") {
-        console.log("You lose");
-        computerScore++;
-      } else if (computerChoice == "paper") {
-        console.log("You win!");
-        userScore++;
-      }
-    }
-    console.log(`Computer Score is : ${computerScore}`);
-    console.log(`User Score is : ${userScore}`);
-    console.log("--------------------------");
   }
-  playRound(getUserChoice(), getComputerChoice());
+  resultDisplay.textContent = result;
+  switch (result) {
+    case "YOU WIN!":
+      resultDisplay.style.color = "green";
+      userScore++;
+      userScoreDisplay.textContent = `User Score: ${userScore}`;
+      userScoreDisplay.classList.toggle("transition");
+      break;
+    case "YOU LOSE!":
+      resultDisplay.style.color = "red";
+      computerScore++;
+      computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+      computerScoreDisplay.classList.toggle("transition");
+      break;
+    default:
+      resultDisplay.style.color = "white";
+  }
+  if (userScore === 5) {
+    resultDisplay.textContent = "YOU WIN THE ROUND";
+    running = false;
+  }
+  if (computerScore === 5) {
+    resultDisplay.textContent = "YOU LOSE THE ROUND";
+    running = false;
+  }
 }
 
+//if score == 5 -> you win

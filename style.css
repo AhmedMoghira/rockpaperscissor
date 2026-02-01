@@ -43,10 +43,22 @@ button:active {
   background: hsla(113, 100%, 50%, 0.705);
   border-radius: 50%;
   padding: 10px;
+  margin-bottom: 20px;
 }
 .images img:hover {
   background: hsla(115, 100%, 50%, 0.8);
   cursor: pointer;
+}
+.computerChoice {
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  color:hsl(300, 100%, 50%);
+}
+.computerChoice::before {
+  content: "Computer Choice: ";
+  color: hsla(113, 100%, 50%, 0.705);
 }
 .score {
   background: rgba(30, 255, 0, 0.705);
@@ -56,8 +68,12 @@ button:active {
   color: hsl(240, 80%, 50%);
   font-weight: bold;
 }
-#result {
+#resultDisplay {
   font-size: 20px;
-  visibility: visible;
-  /* change color to green when win and red when lose */
+}
+#userScore, #computerScore {
+  transition: 1s;
+}
+.transition{
+  transform: scale(1.1);
 }
