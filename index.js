@@ -57,6 +57,4 @@ function playGame() {
   }
   playRound(getUserChoice(), getComputerChoice());
 }
-for (let i = 0; i < 5; i++) {
-  playGame();
-}
+
